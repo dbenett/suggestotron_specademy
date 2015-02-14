@@ -7,7 +7,7 @@ gem 'rails', '4.2.0'
 group :development, :test do
   gem 'sqlite3'
 end
-# Use pg for heroku deployment
+# Use PostgreSQL for heroku deployment
 group :production do
   gem 'pg'
   gem 'rails_12factor'
