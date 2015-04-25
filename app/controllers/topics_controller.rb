@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  before_action :set_topic, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
   # GET /topics
   # GET /topics.json
@@ -62,11 +62,13 @@ class TopicsController < ApplicationController
   end
 
   def upvote
-    @topic = Topic.find(params[:id])
     @topic.votes.create
     redirect_to(topics_path)
   end
-
+  def downvote
+    @topic.votes.last.destroy
+    redirect_to(topics_path)
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_topic
@@ -77,4 +79,4 @@ class TopicsController < ApplicationController
     def topic_params
       params.require(:topic).permit(:title, :description)
     end
-end
+  end
